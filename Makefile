@@ -16,7 +16,7 @@ define Package/$(PKG_NAME)
 	SUBMENU:=3. Applications
 	PKGARCH:=all
 	TITLE:=luci for syncdial
-        DEPENDS:=+kmod-macvlan +shellsync
+        DEPENDS:=+kmod-macvlan
 endef
 
 define Package/$(PKG_NAME)/description
@@ -46,34 +46,38 @@ endef
 define Build/Compile
 endef
 
-define Package/$(PKG_NAME)/install
+#define Package/$(PKG_NAME)/install
 
-	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_BIN) ./files/etc/uci-defaults/luci-syncdial $(1)/etc/uci-defaults/luci-syncdial
+#	$(INSTALL_DIR) $(1)/etc/uci-defaults
+#	$(INSTALL_BIN) ./files/etc/uci-defaults/luci-syncdial $(1)/etc/uci-defaults/luci-syncdial
 
-	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
-	$(INSTALL_BIN) ./files/etc/hotplug.d/iface/01-dialcheck $(1)/etc/hotplug.d/iface/01-dialcheck
-	
-	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_CONF) ./files/etc/config/syncdial $(1)/etc/config/
-	
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/etc/init.d/* $(1)/etc/init.d/
+#	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
+#	$(INSTALL_BIN) ./files/etc/hotplug.d/iface/01-dialcheck $(1)/etc/hotplug.d/iface/01-dialcheck
 
-	$(INSTALL_DIR) $(1)/bin
-	$(INSTALL_BIN) ./files/bin/genwancfg $(1)/bin/genwancfg
-	$(INSTALL_BIN) ./files/bin/pppconnectcheck $(1)/bin/pppconnectcheck
-	
-	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/controller
-	$(INSTALL_DATA) ./files/usr/lib/lua/luci/controller/*.lua $(1)/usr/lib/lua/luci/controller/
+#	$(INSTALL_DIR) $(1)/etc/config
+#	$(INSTALL_CONF) ./files/etc/config/syncdial $(1)/etc/config/
 
-	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/model/cbi
-	$(INSTALL_DATA) ./files/usr/lib/lua/luci/model/cbi/syncdial.lua $(1)/usr/lib/lua/luci/model/cbi/
-	
-	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/syncdial
-	$(INSTALL_DATA) ./files/usr/lib/lua/luci/view/syncdial/* $(1)/usr/lib/lua/luci/view/syncdial/
+#	$(INSTALL_DIR) $(1)/etc/init.d
+#	$(INSTALL_BIN) ./files/etc/init.d/* $(1)/etc/init.d/
 
+#	$(INSTALL_DIR) $(1)/bin
+#	$(INSTALL_BIN) ./files/bin/genwancfg $(1)/bin/genwancfg
+#	$(INSTALL_BIN) ./files/bin/pppconnectcheck $(1)/bin/pppconnectcheck
 
-endef
+#	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/controller
+#	$(INSTALL_DATA) ./files/usr/lib/lua/luci/controller/*.lua $(1)/usr/lib/lua/luci/controller/
 
-$(eval $(call BuildPackage,$(PKG_NAME)))
+#	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/model/cbi
+#	$(INSTALL_DATA) ./files/usr/lib/lua/luci/model/cbi/syncdial.lua $(1)/usr/lib/lua/luci/model/cbi/
+
+#	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/syncdial
+#	$(INSTALL_DATA) ./files/usr/lib/lua/luci/view/syncdial/* $(1)/usr/lib/lua/luci/view/syncdial/
+
+#endef
+
+#$(eval $(call BuildPackage,$(PKG_NAME)))
+
+include ../../luci.mk
+
+# call BuildPackage - OpenWrt buildroot signature
+

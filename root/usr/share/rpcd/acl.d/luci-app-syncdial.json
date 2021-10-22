@@ -1,0 +1,15 @@
+{
+    "luci-app-syncdial": {
+        "description": "syncdial",
+        "read": {
+            "uci": [
+                "syncdial"
+            ]
+        },
+        "write": {
+            "uci": [
+                "syncdial"
+            ]
+        }
+    }
+}
